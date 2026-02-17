@@ -1,0 +1,22 @@
+# AcademicRAG Dependencies
+
+# Core
+streamlit>=1.31.0
+python-dotenv>=1.0.0
+
+# Vector Store
+chromadb>=0.4.22
+sentence-transformers>=2.3.1
+
+# LLM Integration
+ollama>=0.1.6
+anthropic>=0.18.0
+
+# Document Processing
+PyPDF2>=3.0.1
+tiktoken>=0.5.2
+
+# Utilities
+numpy>=1.24.0,<2.0
+pandas>=2.0.0
+tqdm>=4.66.0

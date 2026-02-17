@@ -1,0 +1,100 @@
+{
+  "meta": {
+    "last_updated": "2026-02-17",
+    "papers_processed": ["smith_2023", "jones_2024"],
+    "total_concepts": 4,
+    "total_edges": 3
+  },
+  "concepts": {
+    "automation": {
+      "id": "automation",
+      "type": "construct",
+      "label": "Automation",
+      "definition": "The replacement of human labor by machines or algorithms in production processes",
+      "first_introduced_by": "smith_2023",
+      "mentioned_in": ["smith_2023", "jones_2024"],
+      "operationalizations": [
+        {
+          "paper": "smith_2023",
+          "measure": "Industrial robot installations per 1000 workers",
+          "page": 12
+        }
+      ],
+      "quotes": [
+        {
+          "paper": "smith_2023",
+          "text": "Automation represents the most significant labor market disruption since industrialization",
+          "page": 3
+        }
+      ]
+    },
+    "wage_inequality": {
+      "id": "wage_inequality",
+      "type": "variable",
+      "label": "Wage Inequality",
+      "definition": "The dispersion of wages across workers, typically measured by the 90/10 ratio or Gini coefficient",
+      "first_introduced_by": "smith_2023",
+      "mentioned_in": ["smith_2023", "jones_2024"]
+    },
+    "task_displacement": {
+      "id": "task_displacement",
+      "type": "variable",
+      "label": "Task Displacement",
+      "definition": "The reduction in labor's share of value added due to automation of tasks previously performed by workers",
+      "first_introduced_by": "jones_2024",
+      "mentioned_in": ["jones_2024"]
+    },
+    "shift_share_design": {
+      "id": "shift_share_design",
+      "type": "method",
+      "label": "Shift-Share Design",
+      "definition": "An identification strategy that combines predetermined exposure shares with aggregate shocks to construct an instrument",
+      "first_introduced_by": "jones_2024",
+      "mentioned_in": ["jones_2024"]
+    }
+  },
+  "edges": [
+    {
+      "source": "automation",
+      "target": "task_displacement",
+      "type": "causes",
+      "papers": ["jones_2024"],
+      "evidence": "strong"
+    },
+    {
+      "source": "task_displacement",
+      "target": "wage_inequality",
+      "type": "causes",
+      "papers": ["smith_2023", "jones_2024"],
+      "evidence": "moderate"
+    },
+    {
+      "source": "shift_share_design",
+      "target": "task_displacement",
+      "type": "measures",
+      "papers": ["jones_2024"]
+    }
+  ],
+  "papers": {
+    "smith_2023": {
+      "id": "smith_2023",
+      "title": "Automation and the Labor Market",
+      "authors": ["John Smith"],
+      "year": 2023,
+      "processed": true,
+      "concepts_extracted": ["automation", "wage_inequality"],
+      "main_claim": "Automation increases wage inequality through task displacement",
+      "method": "Panel data with two-way fixed effects"
+    },
+    "jones_2024": {
+      "id": "jones_2024",
+      "title": "Task Displacement and Economic Consequences",
+      "authors": ["Jane Jones", "Bob Williams"],
+      "year": 2024,
+      "processed": true,
+      "concepts_extracted": ["task_displacement", "shift_share_design"],
+      "main_claim": "Task displacement is the primary channel through which automation affects wages",
+      "method": "Shift-share instrumental variable design"
+    }
+  }
+}

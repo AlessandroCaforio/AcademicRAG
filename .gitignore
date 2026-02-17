@@ -1,0 +1,28 @@
+# Environment
+.env
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Data (user-specific)
+papers/*.pdf
+papers/paper_chunks.json
+data/vectors/
+*.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Concept graph data (user-generated)
+concept_graph.json
+
+# Build artifacts
+*.egg-info/
+dist/
+build/
