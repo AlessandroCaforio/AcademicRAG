@@ -315,7 +315,10 @@ def format_chunks_for_prompt(chunks: List[Dict], title: str) -> str:
     for c in chunks:
         meta = c["metadata"]
         page = meta.get("page", "?")
-        parts.append(f"[Page {page}]\n{c['text']}\n")
+        # Remove null bytes and other control characters from PDF text
+        text = c["text"].replace("\x00", "").replace("\ufffd", "")
+        text = "".join(ch for ch in text if ch == "\n" or ch == "\t" or (ord(ch) >= 32))
+        parts.append(f"[Page {page}]\n{text}\n")
 
     return "\n---\n".join(parts)
 
