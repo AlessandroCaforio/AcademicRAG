@@ -30,6 +30,15 @@ Six specialized tools beyond basic Q&A:
 | **Research Gap Finder** | Identify unanswered questions and underexplored areas |
 | **Defense Prep** | Generate potential defense questions and prepare counterarguments |
 
+### Deep Paper Extraction (LLM-Powered)
+Automated structured extraction pipeline that processes each paper and outputs:
+- **Constructs** — theoretical concepts with definitions and verbatim quotes
+- **Variables** — measured quantities with operationalization details
+- **Methods** — empirical approaches with specifics (F-stats, controls, sample sizes)
+- **Claims** — key findings with evidence and strength ratings (strong/moderate/weak)
+
+Extractions feed into a **concept knowledge graph** that links ideas across papers with typed edges (causes, correlates, moderates, supports, contradicts).
+
 ### Auto-Cataloging (No LLM Required)
 The `generate_catalog.py` script builds structured metadata for your entire corpus using pure Python heuristics:
 - Abstract extraction from PDF text
@@ -79,7 +88,23 @@ streamlit run app/main.py
 
 Open **http://localhost:8501** in your browser.
 
-### 4. (Optional) Generate catalog
+### 4. (Optional) Extract structured knowledge
+
+```bash
+# Extract a single paper
+python extract_paper.py "Paper Title" --backend claude
+
+# Extract ALL unprocessed papers (batch mode)
+python run_extraction.py --backend claude
+
+# Build/update the concept graph from extractions
+python build_graph.py extractions/
+
+# See what would be processed (no LLM calls)
+python run_extraction.py --dry-run
+```
+
+### 5. (Optional) Generate catalog
 
 ```bash
 python generate_catalog.py
@@ -159,8 +184,12 @@ AcademicRAG/
 │   ├── rag_engine.py          # Core RAG: indexing, retrieval, generation
 │   └── academic_features.py   # 6 academic tools
 ├── papers/                    # Your PDFs + paper_chunks.json
+├── extractions/               # Structured paper extractions (auto-generated)
 ├── data/vectors/              # ChromaDB storage (auto-generated)
 ├── add_paper.py               # PDF → chunks ingestion
+├── extract_paper.py           # LLM-powered structured extraction (single paper)
+├── build_graph.py             # Concept graph builder (from extractions)
+├── run_extraction.py          # Batch orchestrator (all papers)
 ├── generate_catalog.py        # Auto-catalog (no LLM needed)
 ├── run.sh                     # Quick start script
 ├── requirements.txt

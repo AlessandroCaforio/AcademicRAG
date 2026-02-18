@@ -22,6 +22,13 @@ Thumbs.db
 # Concept graph data (user-generated)
 concept_graph.json
 
+# Extractions (user-generated, can be large)
+extractions/
+!extractions/.gitkeep
+
+# Raw LLM output (debug)
+*_raw.txt
+
 # Build artifacts
 *.egg-info/
 dist/
